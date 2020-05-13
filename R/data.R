@@ -32,11 +32,19 @@ SentiStrengthJar <- function(location, overwrite=FALSE) {
 #'   already exists.
 #' @export
 AddSentiStrengthData <- function(location, datadir="sentidata_en", overwrite=FALSE) {
-  dest <- file.path(system.file(package="RSentiStrength"), "sentistrength")
-  if (!file.exists(dest)) dir.create(dest)
-  dest <- file.path(dest, datadir)
-  if (overwrite || !file.exists(dest)) {
-    file.copy(location, dest, recursive=TRUE)
+  dest <- file.path(system.file(package="RSentiStrength"), "sentistrength", datadir)
+  if (overwrite && file.exists(dest)) {
+    message("Removing ", dest)
+    unlink(dest, recursive=TRUE)
+  }
+  if (!file.exists(dest)) {
+    message("Creating ", dest)
+    dir.create(dest)
+    files <- dir(location, all.files=TRUE, recursive=TRUE, full.names=TRUE)
+    for (f in files) {
+      message("Copying ", f)
+      file.copy(f, dest, recursive=TRUE)
+    }
   } else stop("File %s already exists", dest)
 }
 
