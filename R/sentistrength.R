@@ -13,7 +13,7 @@
 SentiStrength <- function(text,
                           sentistrength.data=SentiStrengthData("sentidata_en"),
                           parse=TRUE) {
-  text <- gsub("[[:blank:]\n]+", " ", text)
+  text <- gsub("[[:blank:]\n\r]+", " ", text)
   text <- paste(text, collapse="\n")
   if (!grepl("/$", sentistrength.data)) {
     sentistrength.data <- paste0(sentistrength.data, "/")
