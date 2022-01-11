@@ -7,14 +7,14 @@
 #'   SentiStrength language data.
 #' @param parse If TRUE, parses the output of SentiStrength into a
 #'   \code{data.table} object.
-#' @param ... Additional argument to pass to the Java CLI of
-#'   SentiStrength.
+#' @param additional.args Additional argument to pass to the Java CLI
+#'   of SentiStrength.
 #' @return The output of SentiStrength as a character vector or parsed
 #'   as a \code{data.table} object.
 #' @export
 SentiStrength <- function(text,
                           sentistrength.data=SentiStrengthData("sentidata_en"),
-                          parse=TRUE, ...) {
+                          parse=TRUE, additional.args=c()) {
   text <- gsub("[[:blank:]\n\r]+", " ", text)
   text <- paste(text, collapse="\n")
   if (!grepl("/$", sentistrength.data)) {
@@ -23,7 +23,7 @@ SentiStrength <- function(text,
   senti.jar <- system.file("sentistrength", "sentistrength.jar",
                            package="RSentiStrength", mustWork=TRUE)
   senti.args <- c("-jar", senti.jar, "sentidata", sentistrength.data,
-                  "stdin", "mood", "0", ...)
+                  "stdin", "mood", "0", additional.args)
   res <- system2("java", senti.args, stdout=TRUE, input=text)
   if (parse) {
     data.table(min=as.numeric(sub("^(.*)\t(.*)\t", "\\2", res)),
