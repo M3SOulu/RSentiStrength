@@ -25,9 +25,6 @@ vignettes/*.pdf
 *.knit.md
 inst/doc
 
-man
-NAMESPACE
-
 __pycache__
 
 inst/sentistrength/sentidata_en
