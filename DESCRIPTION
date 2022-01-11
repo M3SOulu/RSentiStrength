@@ -8,8 +8,9 @@ Maintainer: Maëlick Claes <himself@maelick.net>
 Description: R functions for calling SentiStrength.
 Depends: R (>= 3.0)
 Imports: utils, data.table
+Suggests: testthat
 SystemRequirements: java
 LazyData: true
 License: GPL-3
 Encoding: UTF-8
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.2
