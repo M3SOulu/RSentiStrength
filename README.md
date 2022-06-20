@@ -1,4 +1,6 @@
-[![Build Status](https://travis-ci.org/M3SOulu/RSentiStrength.svg?branch=master)](https://travis-ci.org/M3SOulu/RSentiStrength)
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/M3SOulu/RSentiStrength/workflows/R-CMD-check/badge.svg)](https://github.com/M3SOulu/RSentiStrength/actions)
+<!-- badges: end -->
 
 # RSentiStrength
 
